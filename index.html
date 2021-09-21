@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-app="App">
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/banner-1.png" alt="" width="230"/>
+          </div>
+        <nav>
+          <ul>
+          <li>Home</li>
+          <li>Services</li>
+          <li>Products</li>
+          <li>Clients</li>
+          </ul>
+          </nav>
+        </div>
+    </header>
+  <div ng-controller="CrudCtrl">
+
+    <table>
+      <caption>Notification App <button type="button" ng-click="add()">Add New</button></caption>
+      <thead>
+        <tr>
+          <th scope="col">Notification Title</th>
+          <th scope="col">Notification Description</th>
+          <th scope="col">Member's Status</th>
+          <th scope="col">Posted By</th>
+          <th scope="col">Posted Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="profile in Profiles">
+          <td>
+            <input type="text" ng-model="profile.name" ng-show="profile.editable">
+            <span ng-hide="profile.editable">{{ profile.name }}</span>
+          </td>
+          <td>
+            <input type="text" ng-model="profile.country" ng-show="profile.editable">
+            <span ng-hide="profile.editable">{{ profile.country }}</span>
+          </td>
+          <td>
+            <span ng-click="edit($index)" ng-hide="profile.editable">Edit</span>
+            <span ng-click="save($index)" ng-show="profile.editable">Save</span>
+            <span ng-click="delete($index)"> | Delete</span>
+          </td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  
+  </div>
+  </body>
+
+</html>
