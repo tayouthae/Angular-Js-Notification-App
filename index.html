@@ -5,11 +5,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.8/select.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.8/select.js"></script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.8/select.css">
 </head>
 
 <body ng-app="App">
+
     <header>
         <div class="container">
             <div class="logo">
@@ -42,6 +48,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 <tr ng-repeat="profile in Profiles">
                     <td>
                         <input type="text" ng-model="profile.title" ng-show="profile.editable">
@@ -81,9 +88,13 @@
                 <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
             </div>
             <div class="modal-body" id="modal-body">
+                <label for="profile.title">Notification Headline:</label>
+                <input type="text" name="Notification" ng-model="profile.title" className="form-control" /><br/>
+                <label for=" profile.description ">Notification Description:</label>
+                <input type="text " name="Notification Description " ng-model="profile.description" className="form-control " />
                 <ul>
                     <li ng-repeat="item in $ctrl.items">
-                        <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+                        <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item['title'] }}</a>
                     </li>
                 </ul>
                 Selected: <b>{{ $ctrl.selected.item }}</b>

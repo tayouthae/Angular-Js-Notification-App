@@ -1,24 +1,30 @@
-var app = angular.module('App', ['ui.bootstrap']);
+var app = angular.module('App', ['ui.bootstrap', 'ui.select', ]);
 
-app.controller('CrudCtrl', ['$scope',
-    function($scope) {
-        $scope.Profiles = [{
-                title: "Viveka Health Notification",
-                description: "Notification testing",
-                member_status: 0,
-                posted_by: "user",
-                posted_date: "2020-02-12",
-                editable: false
-            },
-            {
-                title: "Notification testing",
-                description: "this is notification testing",
-                member_status: 0,
-                posted_by: "user",
-                posted_date: "2020-02-12",
-                editable: false
-            }
-        ];
+app.factory("notification", function() {
+    var notification = {};
+    notification.data = [{
+            title: "Viveka Health Notification",
+            description: "Notification testing",
+            member_status: 0,
+            posted_by: "user",
+            posted_date: "2020-02-12",
+            editable: false
+        },
+        {
+            title: "Notification testing",
+            description: "this is notification testing",
+            member_status: 0,
+            posted_by: "user",
+            posted_date: "2020-02-12",
+            editable: false
+        }
+    ];
+    return notification;
+});
+
+app.controller('CrudCtrl',
+    function($scope, notification) {
+        $scope.Profiles = notification.data;
 
         $scope.entity = {}
 
@@ -48,12 +54,13 @@ app.controller('CrudCtrl', ['$scope',
             })
         }
     }
-]);
+);
 
-app.controller('ModalDemoCtrl', function($uibModal, $log, $document) {
+app.controller('ModalDemoCtrl', function($uibModal, $log, $document, notification) {
     var $ctrl = this;
-    $ctrl.items = ['item1', 'item2', 'item3'];
-
+    // $types.type = ['Information', 'Reminders', 'Document Requested'];
+    $ctrl.items = notification.data;
+    console.log($document);
     $ctrl.animationsEnabled = true;
 
     $ctrl.open = function(size, parentSelector) {
@@ -80,52 +87,6 @@ app.controller('ModalDemoCtrl', function($uibModal, $log, $document) {
         }, function() {
             $log.info('Modal dismissed at: ' + new Date());
         });
-    };
-
-    $ctrl.openComponentModal = function() {
-        var modalInstance = $uibModal.open({
-            animation: $ctrl.animationsEnabled,
-            component: 'modalComponent',
-            resolve: {
-                items: function() {
-                    return $ctrl.items;
-                }
-            }
-        });
-
-        modalInstance.result.then(function(selectedItem) {
-            $ctrl.selected = selectedItem;
-        }, function() {
-            $log.info('modal-component dismissed at: ' + new Date());
-        });
-    };
-
-    $ctrl.openMultipleModals = function() {
-        $uibModal.open({
-            animation: $ctrl.animationsEnabled,
-            ariaLabelledBy: 'modal-title-bottom',
-            ariaDescribedBy: 'modal-body-bottom',
-            templateUrl: 'stackedModal.html',
-            size: 'sm',
-            controller: function($scope) {
-                $scope.name = 'bottom';
-            }
-        });
-
-        $uibModal.open({
-            animation: $ctrl.animationsEnabled,
-            ariaLabelledBy: 'modal-title-top',
-            ariaDescribedBy: 'modal-body-top',
-            templateUrl: 'stackedModal.html',
-            size: 'sm',
-            controller: function($scope) {
-                $scope.name = 'top';
-            }
-        });
-    };
-
-    $ctrl.toggleAnimation = function() {
-        $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
     };
 });
 
