@@ -70,6 +70,12 @@ table th {
     text-transform: uppercase;
 }
 
+.right {
+    float: right;
+    margin-right: 1%;
+    font-size: medium;
+}
+
 @media screen and (max-width: 600px) {
     table {
         border: 0;

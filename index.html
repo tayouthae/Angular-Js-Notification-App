@@ -9,6 +9,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.8/select.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.8/select.css">
@@ -36,7 +37,18 @@
         <table>
             <caption>Notification App
                 <button type="button" class="btn btn-primary" ng-click="add()">Add New</button>
+                <span class="right">
+                    <label>Sort By:</label>
+                    <select ng-model="SortColumn">  
+                        <option value="title">Title</option>  
+                        <option value="posted_date">Posted Date</option>  
+                        <option value="posted_by">Posted By</option>  
+                        </select>
+                    <label>Search</label>
+                    <input type="text" ng-model="search" />
+                </span>
             </caption>
+
             <thead>
                 <tr>
                     <th scope="col">Notification Title</th>
@@ -49,7 +61,7 @@
             </thead>
             <tbody>
 
-                <tr ng-repeat="profile in Profiles">
+                <tr ng-repeat="profile in Profiles | filter: search | orderBy:SortColumn">
                     <td>
                         <input type="text" ng-model="profile.title" ng-show="profile.editable">
                         <span ng-hide="profile.editable">{{ profile.title }}</span>

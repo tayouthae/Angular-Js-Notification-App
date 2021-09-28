@@ -1,4 +1,4 @@
-var app = angular.module('App', ['ui.bootstrap', 'ui.select', ]);
+var app = angular.module('App', ['ui.bootstrap', 'ui.select']);
 
 app.factory("notification", function() {
     var notification = {};
@@ -7,14 +7,14 @@ app.factory("notification", function() {
             description: "Notification testing",
             member_status: 0,
             posted_by: "user",
-            posted_date: "2020-02-12",
+            posted_date: "2010-02-12",
             editable: false
         },
         {
             title: "Notification testing",
             description: "this is notification testing",
             member_status: 0,
-            posted_by: "user",
+            posted_by: "ram",
             posted_date: "2020-02-12",
             editable: false
         }
@@ -53,6 +53,8 @@ app.controller('CrudCtrl',
                 editable: true
             })
         }
+
+        $scope.SortColumn = "title";
     }
 );
 
