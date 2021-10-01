@@ -3,7 +3,7 @@ var app = angular.module('App', ['ui.bootstrap', 'ui.select']);
 app.factory("notification", function() {
     var notification = {};
     notification.data = [{
-            title: "Viveka Health Notification",
+            title: "Health Notification",
             description: "Notification testing",
             member_status: 0,
             posted_by: "user",
